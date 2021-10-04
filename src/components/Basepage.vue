@@ -145,7 +145,11 @@ export default {
           this.users = users.data;
           this.tasks = tasks.data;
         })
-      );
+        
+      )
+      //catches if there is an error in the get request
+      .catch(err => this.users.status(422).json(err))
+      .catch(err => this.tasks.status(422).json(err));     
   },
 };
 </script>
