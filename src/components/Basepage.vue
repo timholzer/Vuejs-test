@@ -8,15 +8,17 @@
     </div>
   </div>
   <div>
+    <!-- If I had time to get it to work, starting here would be in the UserData component for proper structure -->
     <div class="container">
-      <table class="table table-striped" align="right">
+      <table class="table table-striped">
         <thead>
           <tr>
+            <!-- if the other button worked, this one would collapse all collapsable elements by having them all have a class that was targeted -->
             <button
               type="button"
               class="btn btn-primary ml-4 mt-2"
-              data-toggle="modal"
-              data-target="#myModal"
+              data-toggle="collapse"
+              data-target=".task"
             >
               Collapse all
             </button>
@@ -28,7 +30,7 @@
         </thead>
         <tbody v-for="user in users" v-bind:key="user.id">
           <tr>
-            <!-- This button is supposed to toggle elements with ID of same user between collapsed and not collapse -->
+            <!-- This button is supposed to toggle elements with ID of the same user between collapsed and not collapse -->
             <button
               type="button"
               class="btn btn-primary ml-4 mt-2 btn-light btn-outline-primary"
@@ -41,13 +43,13 @@
               Toggle {{ user.name }}'s tasks
             </button>
 
-            <!-- <b-button v-b-toggle="'tasks' + user.id" class="m-1">Toggle {{user.name}}'s tasks</b-button> -->
             <th scope="row">{{ user.id }}</th>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.phone }}</td>
           </tr>
 
+          <!-- If I had time to get it to work, starting here would be in the Todos component for proper structure -->
           <tr :id="'tasks' + user.id" class="collapse show">
             <th class="row collapse show" :id="'tasks' + user.id"></th>
             <td class="collapse show" :id="'tasks' + user.id"></td>
@@ -56,10 +58,9 @@
             </td>
             <td class="collapse show" :id="'tasks' + user.id">Name of Task</td>
             <td class="collapse show" :id="'tasks' + user.id">
-              Task Completed
+              Task Completed?
             </td>
           </tr>
-
           <tr
             v-for="task in tasks"
             v-bind:key="task.completed"
@@ -98,9 +99,11 @@
               {{ changeBool(task.completed) }}
             </td>
           </tr>
+          <!-- Todos Component would end here -->
         </tbody>
       </table>
     </div>
+    <!-- UserData Component would end here -->
   </div>
 </template>
 
@@ -119,6 +122,7 @@ export default {
     };
   },
   methods: {
+    // changes the trues and falses to Yes and No to sound more human ¯\_(ツ)_/¯
     changeBool(yea) {
       if (yea === true) {
         return "Yes";
@@ -126,8 +130,9 @@ export default {
         return "No";
       }
     },
-    buttonToggle() {},
-  },
+   },
+
+   //Doing an axios get request for the user and todos data
 
   created: function() {
     axios
@@ -139,12 +144,6 @@ export default {
         axios.spread((tasks, users) => {
           this.users = users.data;
           this.tasks = tasks.data;
-
-          if (this.tasks.completed == "true") {
-            this.tasks.completed = "Yes";
-          } else {
-            this.tasks.completed = "No";
-          }
         })
       );
   },

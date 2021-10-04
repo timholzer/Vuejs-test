@@ -1,27 +1,17 @@
 <template>
-    
-  <BasePage/>
-
+  <BasePage />
 </template>
 
 <script>
-import BasePage from './components/Basepage.vue';
-
-
+import BasePage from "./components/Basepage.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    BasePage
-  }
-}
-
-
-
+    BasePage,
+  },
+};
 </script>
-
-
-
 
 <style>
 #app {
