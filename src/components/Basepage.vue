@@ -13,7 +13,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <!-- if the other button worked, this one would collapse all collapsable elements by having them all have a class that was targeted -->
+            <!-- if the other button worked, this one would collapse all collapsible elements by having them all have a class that was targeted -->
             <button
               type="button"
               class="btn btn-primary ml-4 mt-2"
